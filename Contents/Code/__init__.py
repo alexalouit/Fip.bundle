@@ -10,7 +10,7 @@ def Start():
 	ObjectContainer.title1 = NAME
 	TrackObject.thumb = R(ICON)
 
-####################################################################################################     
+####################################################################################################
 @handler('/music/fip', NAME, thumb=ICON, art=ART)
 def MainMenu():
 
@@ -20,7 +20,7 @@ def MainMenu():
 	return oc
 
 ####################################################################################################
-def CreateTrackObject(url, title, include_container=False):
+def CreateTrackObject(url, title, include_container=False, offset=0, **kwargs):
 
 	track_object = TrackObject(
 		key = Callback(CreateTrackObject, url=url, title=title, include_container=True),

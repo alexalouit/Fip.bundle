@@ -1,21 +1,22 @@
-ART = 'art-default.jpg'
-ICON = 'icon-default.jpg'
-NAME = 'FIP'
-STREAM_URL = 'http://direct.fipradio.fr/live/fip-midfi.mp3'
-
 ####################################################################################################
 def Start():
 
-	ObjectContainer.art = R(ART)
-	ObjectContainer.title1 = NAME
-	TrackObject.thumb = R(ICON)
+	ObjectContainer.art = R('art-default.jpg')
+	ObjectContainer.title1 = 'FIP'
+	TrackObject.thumb = R('icon-default.png')
 
 ####################################################################################################
-@handler('/music/fip', NAME, thumb=ICON, art=ART)
+@handler('/music/fip', 'FIP', thumb='icon-fip.png', art='art-default.jpg')
 def MainMenu():
 
 	oc = ObjectContainer()
-	oc.add(CreateTrackObject(url=STREAM_URL, title=NAME))
+	oc.add(CreateTrackObject(url='https://direct.fipradio.fr/live/fip-midfi.mp3', title='FIP'))
+	oc.add(CreateTrackObject(url='https://direct.fipradio.fr/live/fip-webradio1.mp3', title='FIP Rock'))
+	oc.add(CreateTrackObject(url='https://direct.fipradio.fr/live/fip-webradio2.mp3', title='FIP Jazz'))
+	oc.add(CreateTrackObject(url='https://direct.fipradio.fr/live/fip-webradio3.mp3', title='FIP Groove'))
+	oc.add(CreateTrackObject(url='https://direct.fipradio.fr/live/fip-webradio4.mp3', title='FIP World'))
+	oc.add(CreateTrackObject(url='https://direct.fipradio.fr/live/fip-webradio5.mp3', title='FIP New'))
+	oc.add(CreateTrackObject(url='https://direct.fipradio.fr/live/fip-webradio6.mp3', title='FIP Reggae'))
 
 	return oc
 
@@ -27,8 +28,8 @@ def CreateTrackObject(url, title, include_container=False, offset=0, **kwargs):
 		rating_key = url,
 		title = title,
 		source_title = title,
-		thumb = ICON,
-		art = ART,
+		thumb = R('icon-' + title.lower().replace(' ', '-') + '.png'),
+		art = R('art-default.jpg'),
 		items = [
 			MediaObject(
 				parts = [
